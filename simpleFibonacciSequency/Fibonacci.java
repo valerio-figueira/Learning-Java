@@ -1,4 +1,4 @@
-package simple.fibonacci.sequency;
+package simpleFibonacciSequency;
 
 public class Fibonacci {
 	static int first = 1;

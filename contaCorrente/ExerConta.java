@@ -1,4 +1,4 @@
-package conta.corrente;
+package contaCorrente;
 
 public class ExerConta {
 

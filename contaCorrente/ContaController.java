@@ -1,4 +1,4 @@
-package conta.corrente;
+package contaCorrente;
 
 import java.util.Scanner;
 
