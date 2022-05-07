@@ -1,9 +1,13 @@
 package grocery;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Test {
+	static final int QT_TO_DEDUCTION = 20;
+	static final int PERCENTAGE = 10;
+
 	public static Scanner getScanner(Scanner scanner) {
 		Scanner scan = scanner;
 		return scan;
@@ -24,24 +28,24 @@ public class Test {
 	}
 
 	public static void main(String[] args) {
-		Grocery g = new Grocery();
-		g.setProducts(new ArrayList<Items>());
+		ArrayList<Purchase> p = new ArrayList<Purchase>();
 		Controller c = new Controller();
-		
-		g.setGroceryName("Meals Delight Store");
+		DecimalFormat dF = new DecimalFormat("##.00");
+		double totalPrice = 0;
+		int qtdTotal = 0;
 
-		String decision = "";
-		while (true) {
-			c.addProducts(g);
-			do {
-				decision = typeText("Want to continue? (Yes | Not): ");
-			} while (!decision.equalsIgnoreCase("yes") && !decision.equalsIgnoreCase("not"));
-			if (decision.equalsIgnoreCase("not")) {
-				break;
-			}
+		c.addCar(p);
+
+		for (Purchase list : p) {
+			totalPrice += (list.getPrice() * list.getAmount());
+			qtdTotal += list.getAmount();
 		}
-		for (int i = 0; i < g.getProducts().size(); i++) {
-			printDescription(g.getProducts().get(i).toString());
+
+		if (qtdTotal >= QT_TO_DEDUCTION) {
+			totalPrice -= ((totalPrice * PERCENTAGE) / 100);
 		}
+
+		printDescription(p.toString());
+		printDescription("Total price: R$" + dF.format(totalPrice));
 	}
 }

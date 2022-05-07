@@ -1,5 +1,6 @@
 package grocery;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Controller {
@@ -15,7 +16,7 @@ public class Controller {
 		return scanner.nextDouble();
 	}
 
-	int typeAmount(String text) {
+	int typeNum(String text) {
 		System.out.print(text);
 		return scanner.nextInt();
 	}
@@ -24,28 +25,31 @@ public class Controller {
 		System.out.print(description);
 	}
 
-	Grocery setGroceryName(Grocery g) {
-		g.setGroceryName(typeText("Insert the Grocery's Name: "));
-		return g;
-	}
-
-	Grocery addProducts(Grocery grocery) {
-		Items g = new Items();
-		g.setName(typeText("Type the product's name: "));
-		g.setValue(typeValue("Insert the value for each unit: "));
-		grocery.addProducts(g);
-		return grocery;
-	}
-
-	Purchase setPurchase(Grocery g, Purchase p) {
-		// while(true) {}
-		printText("Item's List: ");
-		for (Items i : g.getProducts()) {
-			printText(i.getName() + ", ");
+	ArrayList<Purchase> addCar(ArrayList<Purchase> items) {
+		while (true) {
+			Purchase p = new Purchase();
+			p.setName(typeText("Insert the item's name: "));
+			p.setPrice(typeValue("Insert the price: R$ "));
+			p.setAmount(typeNum("Insert quantity: "));
+			items.add(p);
+			boolean exit = false;
+			while (true) {
+				Integer option = typeNum("Want to continue? 1 - Yes | 2 - Not: ");
+				if (option.equals(1) || option.equals(2)) {
+					if (option.equals(1)) {
+						break;
+					} else {
+						exit = option.equals(2);
+						break;
+					}
+				} else {
+					printText("Invalid");
+				}
+			}
+			if (exit) {
+				break;
+			}
 		}
-		printText(".");
-
-		typeText("");
-		return p;
+		return items;
 	}
 }

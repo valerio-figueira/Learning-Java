@@ -1,20 +1,39 @@
 package grocery;
 
 public class Purchase {
+	private String name;
+	private double price;
 	private int amount;
-	private double total;
-	
+
 	public int getAmount() {
 		return amount;
 	}
+
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	public double getTotal() {
-		return total;
+
+	public double getPrice() {
+		return price;
 	}
-	public void setTotal(double total) {
-		this.total = total;
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		String desc = this.name;
+		desc += " - Price: R$" + this.price;
+		return desc += " - Quantity: " + this.amount;
+	}
+
 }
