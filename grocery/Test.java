@@ -32,16 +32,16 @@ public class Test {
 		Controller c = new Controller();
 		DecimalFormat dF = new DecimalFormat("##.00");
 		double totalPrice = 0;
-		int qtdTotal = 0;
+		int qtTotal = 0;
 
 		c.addCar(p);
 
 		for (Purchase list : p) {
 			totalPrice += (list.getPrice() * list.getAmount());
-			qtdTotal += list.getAmount();
+			qtTotal += list.getAmount();
 		}
 
-		if (qtdTotal >= QT_TO_DEDUCTION) {
+		if (qtTotal >= QT_TO_DEDUCTION) {
 			totalPrice -= ((totalPrice * PERCENTAGE) / 100);
 		}
 
